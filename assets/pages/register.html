@@ -9,8 +9,18 @@
 
 <body>
 
-    <input type="text" id="registerUsername" placeholder="Username">
-    <button id="registerBtn">Qeydiyyat</button>
+    <form id="register-form">
+        <label for="username">İstifadəçi adı:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="email">E-poçt:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Şifrə:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Qeydiyyatdan keç</button>
+    </form>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/register.js"></script>

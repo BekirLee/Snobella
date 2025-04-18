@@ -1,61 +1,44 @@
 const BASE_URL = "http://localhost:3000/users";
 
-document.getElementById("registerBtn").addEventListener("click", async () => {
-    const username = document.getElementById("registerUsername").value.trim();
+// Qeydiyyat formu submit edildikdə
+document.getElementById("register-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Formun yenilənməsinin qarşısını alır
 
-    if (!username) {
-        return Toastify({
-            text: "Zəhmət olmasa username daxil edin",
-            backgroundColor: "red",
-            duration: 2000,
-        }).showToast();
-    }
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Yeni istifadəçi məlumatını hazırlayırıq
+    const newUser = {
+        user: username,
+        email: email,
+        password: password,
+        wishlist: [], // Boş wishlist
+        basket: []    // Boş basket
+    };
 
     try {
-        // Əvvəlcədən user varsa, qeydiyyat bloklansın
-        const res = await fetch(`${BASE_URL}/users`);
-        const users = await res.json();
-        const isUserExist = users.find(user => user.user === username);
-
-        if (isUserExist) {
-            return Toastify({
-                text: "Bu istifadəçi artıq mövcuddur",
-                backgroundColor: "orange",
-                duration: 2000,
-            }).showToast();
-        }
-
-        // Yeni user object
-        const newUser = {
-            user: username,
-            wishlist: [],
-            basket: []
-        };
-
-        // POST ilə serverə əlavə et
-        const addRes = await fetch(`${BASE_URL}/users`, {
+        // Yeni istifadəçi serverə göndəririk
+        const response = await fetch(BASE_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newUser),
         });
 
-        const createdUser = await addRes.json();
+        if (!response.ok) {
+            throw new Error("Qeydiyyat baş tutmadı");
+        }
 
-        // localStorage-a yaz
+        // Serverdən gələn istifadəçi məlumatını alırıq
+        const createdUser = await response.json();
+
+        // Yeni istifadəçini localStorage-da saxlayırıq
         localStorage.setItem("currentUser", JSON.stringify(createdUser));
 
-        Toastify({
-            text: "Uğurla qeydiyyatdan keçdiniz",
-            backgroundColor: "green",
-            duration: 2000,
-        }).showToast();
-
-        // Ana səhifəyə yönləndir
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 1500);
-
+        // İstifadəçini ana səhifəyə yönləndiririk
+        window.location.href = "login.html"; // Home səhifəsinə yönləndirir
     } catch (error) {
         console.error("Qeydiyyat xətası:", error);
+        alert("Qeydiyyat zamanı xəta baş verdi. Xahiş edirik yenidən cəhd edin.");
     }
 });
