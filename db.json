@@ -1,44 +1,44 @@
 {
-  "products": [
-    {
-      "id": "1",
-      "title": "Məhsul 1",
-      "price": 25.99,
-      "image": "https://via.placeholder.com/150"
-    }
-  ],
-  "users": [
-    {
-      "id": "1",
-      "user": "Nihad",
-      "email": "nihadbekirli8@gmail.com",
-      "password": "123",
-      "wishlist": [],
-      "basket": []
-    },
-    {
-      "id": "6f01",
-      "user": "nihad",
-      "email": "nihadbekirli8@gmail.com",
-      "password": "123",
-      "wishlist": [],
-      "basket": []
-    },
-    {
-      "id": "adea",
-      "user": "ilko",
-      "email": "ilko9@gmal.com",
-      "password": "123",
-      "wishlist": [],
-      "basket": []
-    },
-    {
-      "id": "d700",
-      "user": "nihad",
-      "email": "nihad@gmail.com",
-      "password": "123",
-      "wishlist": [],
-      "basket": []
-    }
-  ]
+    "products": [
+        {
+            "id": "1",
+            "title": "Məhsul 1",
+            "price": 25.99,
+            "image": "https://via.placeholder.com/150"
+        }
+    ],
+    "users": [
+        {
+            "id": "6f03",
+            "user": "Nihad",
+            "email": "nihadbekirli8@gmail.com",
+            "password": "123",
+            "wishlist": [],
+            "basket": []
+        },
+        {
+            "id": "6f01",
+            "user": "nihad",
+            "email": "nihadbekirli8@gmail.com",
+            "password": "123",
+            "wishlist": [],
+            "basket": []
+        },
+        {
+            "id": "adea",
+            "user": "ilko",
+            "email": "ilko9@gmal.com",
+            "password": "123",
+            "wishlist": [],
+            "basket": []
+        },
+        {
+            "id": "d700",
+            "user": "nihad",
+            "email": "nihad@gmail.com",
+            "password": "123",
+            "wishlist": [],
+            "basket": []
+        }
+    ]
 }
