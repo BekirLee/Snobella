@@ -33,6 +33,38 @@
           "title": "Məhsul 2",
           "price": 125.99,
           "image": "https://via.placeholder.com/150"
+        }
+      ],
+      "basket": [
+        {
+          "id": "1",
+          "title": "Məhsul 1",
+          "price": 25.99,
+          "image": "https://via.placeholder.com/150",
+          "count": 12,
+          "addedAt": "2025-04-19T11:06:36.348Z"
+        },
+        {
+          "id": "2",
+          "title": "Məhsul 2",
+          "price": 125.99,
+          "image": "https://via.placeholder.com/150",
+          "count": 8,
+          "addedAt": "2025-04-19T11:10:51.260Z"
+        }
+      ]
+    },
+    {
+      "id": "adea",
+      "user": "ilko",
+      "email": "ilko9@gmal.com",
+      "password": "123",
+      "wishlist": [
+        {
+          "id": "2",
+          "title": "Məhsul 2",
+          "price": 125.99,
+          "image": "https://via.placeholder.com/150"
         },
         {
           "id": "1",
@@ -43,30 +75,22 @@
       ],
       "basket": [
         {
-          "id": "1",
-          "title": "Məhsul 1",
-          "price": 25.99,
-          "image": "https://via.placeholder.com/150",
-          "count": 5,
-          "addedAt": "2025-04-19T11:06:36.348Z"
-        },
-        {
           "id": "2",
           "title": "Məhsul 2",
           "price": 125.99,
           "image": "https://via.placeholder.com/150",
-          "count": 1,
-          "addedAt": "2025-04-19T11:10:51.260Z"
+          "count": 6,
+          "addedAt": "2025-04-19T11:51:05.927Z"
+        },
+        {
+          "id": "1",
+          "title": "Məhsul 1",
+          "price": 25.99,
+          "image": "https://via.placeholder.com/150",
+          "count": 7,
+          "addedAt": "2025-04-19T11:51:08.030Z"
         }
       ]
-    },
-    {
-      "id": "adea",
-      "user": "ilko",
-      "email": "ilko9@gmal.com",
-      "password": "123",
-      "wishlist": [],
-      "basket": []
     },
     {
       "id": "d700",

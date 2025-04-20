@@ -1,4 +1,3 @@
-const BASE_URL = "http://localhost:3000/products";
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const basketItems = currentUser?.basket || [];
 
@@ -13,12 +12,23 @@ async function fetchBasket() {
     const productElement = document.createElement("div");
     productElement.classList.add("product");
 
-    productElement.innerHTML = `
-            <img src="${product.image}" alt="${product.title}" />
-            <h3>${product.title}</h3>
-            <p>${product.price} AZN</p>
-            <p>Say: ${item.count}</p>
-        `;
+    const img = document.createElement("img");
+    img.src = product.image;
+    img.alt = product.title;
+
+    const title = document.createElement("h3");
+    title.textContent = product.title;
+
+    const price = document.createElement("p");
+    price.textContent = `${product.price} AZN`;
+
+    const count = document.createElement("p");
+    count.textContent = `Say: ${item.count}`;
+
+    productElement.appendChild(img);
+    productElement.appendChild(title);
+    productElement.appendChild(price);
+    productElement.appendChild(count);
 
     basketContainer.appendChild(productElement);
   }
