@@ -314,3 +314,14 @@
 .product button:hover {
   background-color: #f4f4f4;
 }
+
+.wishlist-icon i,
+.basket-icon i {
+  font-size: 24px;
+  color: #ff5722; /* İkonlarınızın rengini belirleyebilirsiniz */
+}
+
+button i {
+  margin-left: 8px;
+  font-size: 18px;
+}

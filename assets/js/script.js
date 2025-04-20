@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
@@ -33,9 +34,26 @@ async function fetchProducts() {
       discountBadge.className = "discount";
       discountBadge.textContent = "30 %";
 
-      const wishlistIcon = document.createElement("div");
+      const wishlistIcon = document.createElement("i");
       wishlistIcon.className = "wishlist-icon";
-      wishlistIcon.innerHTML = "❤";
+      // Başlangıçta ikonun durumunu belirliyoruz
+      wishlistIcon.innerHTML = isInWishlist
+        ? '<i class="fas fa-heart"></i>' // Favorit ise dolu kalp
+        : '<i class="far fa-heart"></i>'; // Favorit değilse boş kalp
+
+      wishlistIcon.addEventListener("click", () =>
+        toggleWishlist(product.id, wishlistIcon)
+      );
+
+      const basketIcon = document.createElement("i");
+      basketIcon.className = "basket-icon";
+      basketIcon.innerHTML = isInBasket
+        ? '<i class="fas fa-shopping-cart"></i>'
+        : '<i class="far fa-shopping-cart"></i>';
+
+      basketIcon.addEventListener("click", () =>
+        addToBasket(product.id, wishlistIcon)
+      );
 
       const rating = document.createElement("div");
       rating.className = "rating";
@@ -44,35 +62,13 @@ async function fetchProducts() {
       const priceWrapper = document.createElement("div");
       priceWrapper.innerHTML = `<span class="price">$${product.price}</span> <span class="old-price">$${product.oldPrice}</span>`;
 
-      const wishlistButton = document.createElement("button");
-      wishlistButton.textContent = isInWishlist
-        ? "✔ Favoritdədir"
-        : "Favoritə əlavə et";
-      wishlistButton.addEventListener("click", () =>
-        toggleWishlist(product.id, wishlistButton)
-      );
-
-      const basketButton = document.createElement("button");
-      basketButton.textContent = isInBasket
-        ? "✔ Səbətdədir"
-        : "Səbətə əlavə et";
-      basketButton.addEventListener("click", () =>
-        addToBasket(product.id, basketButton)
-      );
-
       productElement.appendChild(discountBadge);
       productElement.appendChild(wishlistIcon);
       productElement.appendChild(productImage);
       productElement.appendChild(rating);
       productElement.appendChild(productTitle);
-      // productElement.appendChild(productDescription); 
       productElement.appendChild(priceWrapper);
-      productElement.appendChild(basketButton);
-      productElement.appendChild(productImage);
-      productElement.appendChild(productTitle);
-      productElement.appendChild(productPrice);
-      productElement.appendChild(wishlistButton);
-      productElement.appendChild(basketButton);
+      productElement.appendChild(basketIcon);
 
       productList.appendChild(productElement);
     });
@@ -81,7 +77,7 @@ async function fetchProducts() {
   }
 }
 
-async function toggleWishlist(productId, button) {
+async function toggleWishlist(productId, icon) {
   if (!currentUser) {
     Toastify({
       text: "Zəhmət olmasa əvvəlcə daxil olun",
@@ -92,32 +88,24 @@ async function toggleWishlist(productId, button) {
   }
 
   try {
-    productId = String(productId);
-
-    const [productRes, userRes] = await Promise.all([
-      fetch(`${BASE_URL}/products/${productId}`),
-      fetch(`${BASE_URL}/users/${currentUser.id}`),
-    ]);
-
+    const productRes = await fetch(`${BASE_URL}/products/${productId}`);
     const product = await productRes.json();
+    const userRes = await fetch(`${BASE_URL}/users/${currentUser.id}`);
     const userData = await userRes.json();
 
-    const isExist =
-      userData.wishlist?.some(
-        (item) =>
-          String(item.id) === productId || String(item.productId) === productId
-      ) || false;
+    const isExist = userData.wishlist?.some(
+      (item) => String(item.id) === String(productId)
+    );
 
     let updatedWishlist;
     if (isExist) {
       updatedWishlist = userData.wishlist.filter(
-        (item) =>
-          String(item.id) !== productId && String(item.productId) !== productId
+        (item) => String(item.id) !== String(productId)
       );
-      button.textContent = "Favoritə əlavə et";
+      icon.innerHTML = '<i class="far fa-heart"></i>'; // Boş kalp
     } else {
       updatedWishlist = [...(userData.wishlist || []), product];
-      button.textContent = "✔ Favoritdədir";
+      icon.innerHTML = '<i class="fas fa-heart"></i>'; // Dolu kalp
     }
 
     const updateRes = await fetch(`${BASE_URL}/users/${currentUser.id}`, {
@@ -128,6 +116,7 @@ async function toggleWishlist(productId, button) {
 
     if (!updateRes.ok) throw new Error("Server update failed");
 
+    // Kullanıcı durumu senkronize edilir
     syncUserState({ ...currentUser, wishlist: updatedWishlist });
 
     Toastify({
@@ -196,7 +185,7 @@ async function addToBasket(productId, button) {
     if (!updateRes.ok) throw new Error("Sunucu güncelleme başarısız");
 
     syncUserState({ ...currentUser, basket: updatedBasket });
-    button.textContent = "✔ Səbətdədir";
+    // button.textContent = "✔ Səbətdədir";
 
     Toastify({
       text: "Səbətə əlavə olundu",
@@ -225,159 +214,161 @@ document.addEventListener("DOMContentLoaded", () => {
   renderNavbar(currentUser);
 });
 
-function renderNavbar(user) {
-  const nav = document.createElement("nav");
-  nav.className = "navbar";
+// function renderNavbar(user) {
+//   const nav = document.createElement("nav");
+//   nav.className = "navbar";
 
-  const container = document.createElement("div");
-  container.className = "navbar-container";
+//   const container = document.createElement("div");
+//   container.className = "navbar-container";
 
-  const brand = document.createElement("div");
-  brand.className = "navbar-brand";
-  const brandLink = document.createElement("a");
-  brandLink.href = "/";
-  brandLink.textContent = "E-Ticaret";
-  brand.appendChild(brandLink);
+//   const brand = document.createElement("div");
+//   brand.className = "navbar-brand";
+//   const brandLink = document.createElement("a");
+//   brandLink.href = "/";
+//   brandLink.textContent = "E-Ticaret";
+//   brand.appendChild(brandLink);
 
-  const links = document.createElement("div");
-  links.className = "navbar-links";
+//   const links = document.createElement("div");
+//   links.className = "navbar-links";
 
-  const productsLink = document.createElement("a");
-  productsLink.href = "/products.html";
-  productsLink.textContent = "Məhsullar";
+//   const productsLink = document.createElement("a");
+//   productsLink.href = "/products.html";
+//   productsLink.textContent = "Məhsullar";
 
-  const aboutLink = document.createElement("a");
-  aboutLink.href = "/about.html";
-  aboutLink.textContent = "Haqqımızda";
+//   const aboutLink = document.createElement("a");
+//   aboutLink.href = "/about.html";
+//   aboutLink.textContent = "Haqqımızda";
 
-  links.appendChild(productsLink);
-  links.appendChild(aboutLink);
+//   links.appendChild(productsLink);
+//   links.appendChild(aboutLink);
 
-  const authSection = document.createElement("div");
-  authSection.className = "auth-section";
+//   const authSection = document.createElement("div");
+//   authSection.className = "auth-section";
 
-  if (!user) {
-    const loginLink = document.createElement("a");
-    loginLink.href = "/assets/pages/login.html";
-    loginLink.textContent = "Daxil ol";
-    loginLink.className = "login-btn";
+//   if (!user) {
+//     const loginLink = document.createElement("a");
+//     loginLink.href = "/assets/pages/login.html";
+//     loginLink.textContent = "Daxil ol";
+//     loginLink.className = "login-btn";
 
-    const registerLink = document.createElement("a");
-    registerLink.href = "/register.html";
-    registerLink.textContent = "Qeydiyyat";
-    registerLink.className = "register-btn";
+//     const registerLink = document.createElement("a");
+//     registerLink.href = "/register.html";
+//     registerLink.textContent = "Qeydiyyat";
+//     registerLink.className = "register-btn";
 
-    authSection.appendChild(loginLink);
-    authSection.appendChild(registerLink);
-  } else {
-    const wishlistLink = document.createElement("a");
-    wishlistLink.href = "/wishlist.html";
-    wishlistLink.textContent = `❤️ Favorilər (${user.wishlist?.length || 0})`;
-    wishlistLink.className = "wishlist-btn";
+//     authSection.appendChild(loginLink);
+//     authSection.appendChild(registerLink);
+//   } else {
+//     const wishlistLink = document.createElement("a");
+//     wishlistLink.href = "/wishlist.html";
+//     wishlistLink.textContent = `❤️ Favorilər (${user.wishlist?.length || 0})`;
+//     wishlistLink.className = "wishlist-btn";
 
-    const cartLink = document.createElement("a");
-    cartLink.href = "/assets/pages/basket.html";
-    cartLink.textContent = `🛒 Səbət (${getCartItemCount(user.basket)})`;
-    cartLink.className = "cart-btn";
+//     const cartLink = document.createElement("a");
+//     cartLink.href = "/assets/pages/basket.html";
+//     cartLink.textContent = `🛒 Səbət (${getCartItemCount(user.basket)})`;
+//     cartLink.className = "cart-btn";
 
-    authSection.appendChild(wishlistLink);
-    authSection.appendChild(cartLink);
+//     authSection.appendChild(wishlistLink);
+//     authSection.appendChild(cartLink);
 
-    const dropdown = document.createElement("div");
-    dropdown.className = "user-dropdown";
+//     const dropdown = document.createElement("div");
+//     dropdown.className = "user-dropdown";
 
-    const userMenu = document.createElement("button");
-    userMenu.className = "user-menu";
+//     const userMenu = document.createElement("button");
+//     userMenu.className = "user-menu";
 
-    const avatar = document.createElement("img");
-    avatar.className = "avatar";
-    avatar.src = user.avatar || "https://via.placeholder.com/30";
-    avatar.alt = "Profil";
+//     const avatar = document.createElement("img");
+//     avatar.className = "avatar";
+//     avatar.src = user.avatar || "https://via.placeholder.com/30";
+//     avatar.alt = "Profil";
 
-    const username = document.createElement("span");
-    username.id = "username";
-    username.textContent = user.username || "İstifadəçi";
+//     const username = document.createElement("span");
+//     username.id = "username";
+//     username.textContent = user.username || "İstifadəçi";
 
-    const arrow = document.createTextNode(" ▼");
+//     const arrow = document.createTextNode(" ▼");
 
-    userMenu.appendChild(avatar);
-    userMenu.appendChild(username);
-    userMenu.appendChild(arrow);
+//     userMenu.appendChild(avatar);
+//     userMenu.appendChild(username);
+//     userMenu.appendChild(arrow);
 
-    const dropdownContent = document.createElement("div");
-    dropdownContent.className = "dropdown-content";
+//     const dropdownContent = document.createElement("div");
+//     dropdownContent.className = "dropdown-content";
 
-    const profileLink = document.createElement("a");
-    profileLink.href = "/profile.html";
-    profileLink.textContent = "Profil";
+//     const profileLink = document.createElement("a");
+//     profileLink.href = "/profile.html";
+//     profileLink.textContent = "Profil";
 
-    const ordersLink = document.createElement("a");
-    ordersLink.href = "/orders.html";
-    ordersLink.textContent = "Sifarişlər";
+//     const ordersLink = document.createElement("a");
+//     ordersLink.href = "/orders.html";
+//     ordersLink.textContent = "Sifarişlər";
 
-    const logoutBtn = document.createElement("button");
-    logoutBtn.id = "logout-btn";
-    logoutBtn.textContent = "Çıxış";
-    logoutBtn.addEventListener("click", logout);
+//     const logoutBtn = document.createElement("button");
+//     logoutBtn.id = "logout-btn";
+//     logoutBtn.textContent = "Çıxış";
+//     logoutBtn.addEventListener("click", logout);
 
-    dropdownContent.appendChild(profileLink);
-    dropdownContent.appendChild(ordersLink);
-    dropdownContent.appendChild(logoutBtn);
+//     dropdownContent.appendChild(profileLink);
+//     dropdownContent.appendChild(ordersLink);
+//     dropdownContent.appendChild(logoutBtn);
 
-    dropdown.appendChild(userMenu);
-    dropdown.appendChild(dropdownContent);
-    authSection.appendChild(dropdown);
-  }
+//     dropdown.appendChild(userMenu);
+//     dropdown.appendChild(dropdownContent);
+//     authSection.appendChild(dropdown);
+//   }
 
-  links.appendChild(authSection);
-  container.appendChild(brand);
-  container.appendChild(links);
-  nav.appendChild(container);
+//   links.appendChild(authSection);
+//   container.appendChild(brand);
+//   container.appendChild(links);
+//   nav.appendChild(container);
 
-  const oldNav = document.querySelector("nav");
-  if (oldNav) oldNav.remove();
-  document.body.insertBefore(nav, document.body.firstChild);
+//   const oldNav = document.querySelector("nav");
+//   if (oldNav) oldNav.remove();
+//   document.body.insertBefore(nav, document.body.firstChild);
 
-  initDropdowns();
-}
+//   initDropdowns();
+// }
 
-function getCartItemCount(basket) {
-  if (!basket) return 0;
-  return basket.reduce((total, item) => total + (item.count || 1), 0);
-}
+// function getCartItemCount(basket) {
+//   console.log(basket);
 
-function logout() {
-  localStorage.removeItem("currentUser");
-  renderNavbar(null);
-  Toastify({
-    text: "Uğurla çıxış edildi",
-    backgroundColor: "green",
-    duration: 2000,
-  }).showToast();
-}
+//   // if (!basket) return 0;
+//   // return basket.reduce((total, item) => total + (item.count || 1), 0);
+// }
 
-function initDropdowns() {
-  const dropdowns = document.querySelectorAll(".user-dropdown");
-  dropdowns.forEach((dropdown) => {
-    const button = dropdown.querySelector(".user-menu");
-    button.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle("active");
-    });
-  });
+// function logout() {
+//   localStorage.removeItem("currentUser");
+//   renderNavbar(null);
+//   Toastify({
+//     text: "Uğurla çıxış edildi",
+//     backgroundColor: "green",
+//     duration: 2000,
+//   }).showToast();
+// }
 
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".user-dropdown").forEach((dropdown) => {
-      dropdown.classList.remove("active");
-    });
-  });
-}
+// function initDropdowns() {
+//   const dropdowns = document.querySelectorAll(".user-dropdown");
+//   dropdowns.forEach((dropdown) => {
+//     const button = dropdown.querySelector(".user-menu");
+//     button.addEventListener("click", (e) => {
+//       e.stopPropagation();
+//       dropdown.classList.toggle("active");
+//     });
+//   });
 
-window.addEventListener("storage", (event) => {
-  if (event.key === "currentUser") {
-    const user = JSON.parse(event.newValue);
-    renderNavbar(user);
-  }
-});
+//   document.addEventListener("click", () => {
+//     document.querySelectorAll(".user-dropdown").forEach((dropdown) => {
+//       dropdown.classList.remove("active");
+//     });
+//   });
+// }
+
+// window.addEventListener("storage", (event) => {
+//   if (event.key === "currentUser") {
+//     // const user = JSON.parse(event.newValue);
+//     // renderNavbar(user);
+//   }
+// });
 
 window.onload = fetchProducts;
