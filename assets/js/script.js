@@ -29,6 +29,21 @@ async function fetchProducts() {
       const productPrice = document.createElement("p");
       productPrice.textContent = `${product.price} AZN`;
 
+      const discountBadge = document.createElement("div");
+      discountBadge.className = "discount";
+      discountBadge.textContent = "30 %";
+
+      const wishlistIcon = document.createElement("div");
+      wishlistIcon.className = "wishlist-icon";
+      wishlistIcon.innerHTML = "❤";
+
+      const rating = document.createElement("div");
+      rating.className = "rating";
+      rating.innerHTML = "★★★★★";
+
+      const priceWrapper = document.createElement("div");
+      priceWrapper.innerHTML = `<span class="price">$${product.price}</span> <span class="old-price">$${product.oldPrice}</span>`;
+
       const wishlistButton = document.createElement("button");
       wishlistButton.textContent = isInWishlist
         ? "✔ Favoritdədir"
@@ -45,6 +60,14 @@ async function fetchProducts() {
         addToBasket(product.id, basketButton)
       );
 
+      productElement.appendChild(discountBadge);
+      productElement.appendChild(wishlistIcon);
+      productElement.appendChild(productImage);
+      productElement.appendChild(rating);
+      productElement.appendChild(productTitle);
+      // productElement.appendChild(productDescription); 
+      productElement.appendChild(priceWrapper);
+      productElement.appendChild(basketButton);
       productElement.appendChild(productImage);
       productElement.appendChild(productTitle);
       productElement.appendChild(productPrice);

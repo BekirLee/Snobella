@@ -10,59 +10,62 @@ function renderNavbar(user) {
   const container = document.createElement("div");
   container.className = "navbar-container";
 
-  // Brand
+  // Marka
   const brand = document.createElement("div");
   brand.className = "navbar-brand";
   const brandLink = document.createElement("a");
   brandLink.href = "/";
-  brandLink.textContent = "E-Ticaret";
+  brandLink.textContent = "Snobella";
   brand.appendChild(brandLink);
 
-  // Ana Linklər
-  const links = document.createElement("div");
-  links.className = "navbar-links";
+  // Arama Formu
+  const searchForm = document.createElement("form");
+  searchForm.className = "search-form";
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+    }
+  });
 
-  const productsLink = document.createElement("a");
-  productsLink.href = "/products.html";
-  productsLink.textContent = "Məhsullar";
+  const searchInput = document.createElement("input");
+  searchInput.type = "text";
+  searchInput.placeholder = "Search all product";
+  searchInput.className = "search-input";
 
-  const aboutLink = document.createElement("a");
-  aboutLink.href = "/about.html";
-  aboutLink.textContent = "Haqqımızda";
+  const searchBtn = document.createElement("button");
+  searchBtn.type = "submit";
+  searchBtn.className = "search-btn";
+  searchBtn.innerHTML = "🔍";
 
-  links.appendChild(productsLink);
-  links.appendChild(aboutLink);
+  searchForm.appendChild(searchInput);
+  searchForm.appendChild(searchBtn);
 
-  // Auth bölümü
+  // Sağ bölmə
   const authSection = document.createElement("div");
   authSection.className = "auth-section";
 
   if (!user) {
     const loginLink = document.createElement("a");
     loginLink.href = "/assets/pages/login.html";
-    loginLink.textContent = "Daxil ol";
+    loginLink.textContent = "Sign up";
     loginLink.className = "login-btn";
 
-    const registerLink = document.createElement("a");
-    registerLink.href = "/register.html";
-    registerLink.textContent = "Qeydiyyat";
-    registerLink.className = "register-btn";
-
-    authSection.appendChild(loginLink);
-    authSection.appendChild(registerLink);
+    authSection.appendChild(iconLink("👤", loginLink));
   } else {
     const wishlistLink = document.createElement("a");
     wishlistLink.href = "/assets/pages/wishlist.html";
-    wishlistLink.textContent = `❤️ Favorilər (${user.wishlist?.length || 0})`;
+    wishlistLink.textContent = "Wishlist";
     wishlistLink.className = "wishlist-btn";
 
     const cartLink = document.createElement("a");
     cartLink.href = "/assets/pages/basket.html";
-    cartLink.textContent = `🛒 Səbət (${getCartItemCount(user.basket)})`;
+    cartLink.textContent = "Basket";
     cartLink.className = "cart-btn";
 
-    authSection.appendChild(wishlistLink);
-    authSection.appendChild(cartLink);
+    authSection.appendChild(iconLink("🤍", wishlistLink));
+    authSection.appendChild(iconLink("🛍️", cartLink));
 
     const dropdown = document.createElement("div");
     dropdown.className = "user-dropdown";
@@ -110,9 +113,9 @@ function renderNavbar(user) {
     authSection.appendChild(dropdown);
   }
 
-  links.appendChild(authSection);
   container.appendChild(brand);
-  container.appendChild(links);
+  container.appendChild(searchForm);
+  container.appendChild(authSection);
   nav.appendChild(container);
 
   const oldNav = document.querySelector("nav");
@@ -120,6 +123,16 @@ function renderNavbar(user) {
   document.body.insertBefore(nav, document.body.firstChild);
 
   initDropdowns();
+}
+
+function iconLink(icon, linkElement) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "icon-link";
+  const iconSpan = document.createElement("span");
+  iconSpan.textContent = icon;
+  wrapper.appendChild(iconSpan);
+  wrapper.appendChild(linkElement);
+  return wrapper;
 }
 
 function getCartItemCount(basket) {
