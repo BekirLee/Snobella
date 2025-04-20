@@ -26,6 +26,7 @@ function fetchWishlist() {
   wishlistItems.forEach((product) => {
     const productElement = document.createElement("div");
     productElement.classList.add("wishlist-product");
+    productElement.style = "#F9F9F9";
 
     productElement.innerHTML = `
       <div class="product-image">
@@ -35,10 +36,7 @@ function fetchWishlist() {
         <h3>${product.title}</h3>
         <p class="price">${product.price} AZN</p>
         <div class="wishlist-buttons">
-          <button onclick="removeFromWishlist('${product.id}', this)" class="remove-btn">
-            ❌ Sil
-          </button>
-          <button onclick="addToBasket('${product.id}')" class="add-to-cart">
+          <button onclick="addToBasket('${product.id}')" class="add-to-cart w-100" style='background-color:transparent'>
             🛒 Səbətə Əlavə Et
           </button>
         </div>

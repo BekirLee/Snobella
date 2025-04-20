@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 170%;
+  letter-spacing: 0%;
+}
+
+#wishlist-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Wishlist Ürün */
+.wishlist-product {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.wishlist-product:hover {
+  transform: translateY(-5px);
+}
+
+/* Ürün Görseli */
+.wishlist-product .product-image {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.wishlist-product .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Wishlist Ürün Başlık */
+.wishlist-product .product-info {
+  padding: 15px;
+}
+
+.wishlist-product .product-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wishlist-product .product-info p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  color: #444;
+}
+
+/* Discount Badge */
+.wishlist-product .discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff4d4f;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+/* Kalp İkonu (Favori) */
+.wishlist-product .wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  color: #ff4d4f;
+  cursor: pointer;
+}
+
+/* Ürün Yorumları ve Puan */
+.wishlist-product .rating {
+  color: #ffc107;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Ürün Fiyatı */
+.wishlist-product .product-info .price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e53935;
+}
+
+/* Eski Fiyat */
+.wishlist-product .product-info .old-price {
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  color: gray;
+  margin-left: 0.5rem;
+}
+
+/* Silme ve Sepete Ekle Butonları */
+.wishlist-product .wishlist-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.wishlist-product .wishlist-buttons button {
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #000 !important;
+}
+
+/* Silme Butonu */
+.wishlist-product .wishlist-buttons .remove-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.wishlist-product .wishlist-buttons .remove-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Sepete Ekle Butonu */
+.wishlist-product .wishlist-buttons .add-to-cart {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.wishlist-product .wishlist-buttons .add-to-cart:hover {
+  background-color: #388e3c;
+}
