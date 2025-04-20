@@ -13,7 +13,7 @@ async function fetchBasket() {
     productElement.classList.add("product");
 
     const img = document.createElement("img");
-    img.src = product.image;
+    img.src = "../imgs" + product.photo;
     img.alt = product.title;
 
     const title = document.createElement("h3");

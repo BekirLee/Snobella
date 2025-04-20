@@ -143,7 +143,7 @@ function getCartItemCount(basket) {
 function logout() {
   let inner = document.querySelector("#product-list");
   localStorage.removeItem("currentUser");
-  
+
   renderNavbar(null);
   Toastify({
     text: "Uğurla çıxış edildi",
@@ -168,8 +168,6 @@ function initDropdowns() {
     });
   });
 }
-
-
 
 window.addEventListener("storage", (event) => {
   if (event.key === "currentUser") {

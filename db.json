@@ -2,14 +2,37 @@
   "products": [
     {
       "id": "1",
+      "photo": "/5a34e83495d908 2.png",
       "title": "Məhsul 1",
       "price": 25.99,
       "image": "https://via.placeholder.com/150"
     },
     {
       "id": "2",
+      "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
       "title": "Məhsul 2",
       "price": 125.99,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "3",
+      "photo": "/kisspng-chanel-gucci-handbag-wallet-sell-my-gucci-bag-www-pixshark-com-images-galler-5b7def98c254a0 2.png",
+      "title": "Məhsul 1",
+      "price": 25.99,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "4",
+      "photo": "/kisspng-handbag-baggage-hand-luggage-leather-women-bag-5acd4069b62017 1.png",
+      "title": "Məhsul 1",
+      "price": 25.99,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "5",
+      "photo": "/kisspng-lancel-handbag-leather-clothing-accessories-women-bag-5abc8960466306 1 (1).png",
+      "title": "Məhsul 1",
+      "price": 25.99,
       "image": "https://via.placeholder.com/150"
     }
   ],
@@ -29,28 +52,52 @@
       "password": "123",
       "wishlist": [
         {
+          "id": "1",
+          "photo": "/5a34e83495d908 2.png",
+          "title": "Məhsul 1",
+          "price": 25.99,
+          "image": "https://via.placeholder.com/150"
+        },
+        {
+          "id": "5",
+          "photo": "/kisspng-lancel-handbag-leather-clothing-accessories-women-bag-5abc8960466306 1 (1).png",
+          "title": "Məhsul 1",
+          "price": 25.99,
+          "image": "https://via.placeholder.com/150"
+        },
+        {
           "id": "2",
+          "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
           "title": "Məhsul 2",
           "price": 125.99,
+          "image": "https://via.placeholder.com/150"
+        },
+        {
+          "id": "4",
+          "photo": "/kisspng-handbag-baggage-hand-luggage-leather-women-bag-5acd4069b62017 1.png",
+          "title": "Məhsul 1",
+          "price": 25.99,
           "image": "https://via.placeholder.com/150"
         }
       ],
       "basket": [
         {
-          "id": "1",
-          "title": "Məhsul 1",
-          "price": 25.99,
-          "image": "https://via.placeholder.com/150",
-          "count": 12,
-          "addedAt": "2025-04-19T11:06:36.348Z"
-        },
-        {
           "id": "2",
+          "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
           "title": "Məhsul 2",
           "price": 125.99,
           "image": "https://via.placeholder.com/150",
-          "count": 8,
-          "addedAt": "2025-04-19T11:10:51.260Z"
+          "count": 4,
+          "addedAt": "2025-04-20T13:16:33.641Z"
+        },
+        {
+          "id": "3",
+          "photo": "/kisspng-chanel-gucci-handbag-wallet-sell-my-gucci-bag-www-pixshark-com-images-galler-5b7def98c254a0 2.png",
+          "title": "Məhsul 1",
+          "price": 25.99,
+          "image": "https://via.placeholder.com/150",
+          "count": 2,
+          "addedAt": "2025-04-20T13:16:55.478Z"
         }
       ]
     },
@@ -59,32 +106,8 @@
       "user": "ilko",
       "email": "ilko9@gmal.com",
       "password": "123",
-      "wishlist": [
-        {
-          "id": "2",
-          "title": "Məhsul 2",
-          "price": 125.99,
-          "image": "https://via.placeholder.com/150"
-        }
-      ],
-      "basket": [
-        {
-          "id": "2",
-          "title": "Məhsul 2",
-          "price": 125.99,
-          "image": "https://via.placeholder.com/150",
-          "count": 16,
-          "addedAt": "2025-04-19T11:51:05.927Z"
-        },
-        {
-          "id": "1",
-          "title": "Məhsul 1",
-          "price": 25.99,
-          "image": "https://via.placeholder.com/150",
-          "count": 24,
-          "addedAt": "2025-04-19T11:51:08.030Z"
-        }
-      ]
+      "wishlist": [],
+      "basket": []
     },
     {
       "id": "d700",
