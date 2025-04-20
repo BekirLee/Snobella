@@ -2,7 +2,6 @@ const BASE_URL = "http://localhost:3000";
 // const BASE_URL = "http://localhost:3000";
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
-
 async function fetchProducts() {
   try {
     const response = await fetch(`${BASE_URL}/products`);
@@ -24,8 +23,6 @@ async function fetchProducts() {
 
       const productImage = document.createElement("img");
       productImage.src = "../assets/imgs" + product.photo;
-      console.log(product.photo);
-
       productImage.alt = product.title;
 
       const productTitle = document.createElement("h3");
@@ -33,6 +30,10 @@ async function fetchProducts() {
 
       const productPrice = document.createElement("p");
       productPrice.textContent = `${product.price} AZN`;
+
+      // Description kısmı eklendi
+      const productDescription = document.createElement("p");
+      productDescription.textContent = product.description.slice(0, 60) + "..."; // Description
 
       const discountBadge = document.createElement("div");
       discountBadge.className = "discount";
@@ -69,6 +70,7 @@ async function fetchProducts() {
       productElement.appendChild(rating);
       productElement.appendChild(productTitle);
       productElement.appendChild(priceWrapper);
+      productElement.appendChild(productDescription); // Description ekle
       productElement.appendChild(basketIcon);
 
       productList.appendChild(productElement);

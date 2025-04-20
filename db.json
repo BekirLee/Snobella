@@ -5,35 +5,40 @@
       "photo": "/5a34e83495d908 2.png",
       "title": "Məhsul 1",
       "price": 25.99,
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "description": "Bu məhsul, yüksək keyfiyyətli və şık dizayna malikdir. Gündəlik istifadə üçün ideal seçimdir."
     },
     {
       "id": "2",
       "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
       "title": "Məhsul 2",
       "price": 125.99,
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "description": "Yüksək keyfiyyətli materiallardan hazırlanmış rahat laptop çantası. Hər gün istifadə üçün idealdır."
     },
     {
       "id": "3",
       "photo": "/kisspng-chanel-gucci-handbag-wallet-sell-my-gucci-bag-www-pixshark-com-images-galler-5b7def98c254a0 2.png",
-      "title": "Məhsul 1",
+      "title": "Məhsul 3",
       "price": 25.99,
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "description": "Şık və dəbli qadın çantası, hər bir geyimlə rahat uyğunlaşır."
     },
     {
       "id": "4",
       "photo": "/kisspng-handbag-baggage-hand-luggage-leather-women-bag-5acd4069b62017 1.png",
-      "title": "Məhsul 1",
+      "title": "Məhsul 4",
       "price": 25.99,
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "description": "Dəri materialdan hazırlanmış yüksək keyfiyyətli qadın çantası. Sərfəli qiymətə keyfiyyət."
     },
     {
       "id": "5",
       "photo": "/kisspng-lancel-handbag-leather-clothing-accessories-women-bag-5abc8960466306 1 (1).png",
-      "title": "Məhsul 1",
+      "title": "Məhsul 5",
       "price": 25.99,
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "description": "Qadınlar üçün lüks və dəbli çanta. Hər bir tədbir üçün mükəmməl seçim."
     }
   ],
   "users": [
@@ -66,18 +71,19 @@
           "image": "https://via.placeholder.com/150"
         },
         {
-          "id": "2",
-          "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
-          "title": "Məhsul 2",
-          "price": 125.99,
-          "image": "https://via.placeholder.com/150"
-        },
-        {
           "id": "4",
           "photo": "/kisspng-handbag-baggage-hand-luggage-leather-women-bag-5acd4069b62017 1.png",
           "title": "Məhsul 1",
           "price": 25.99,
           "image": "https://via.placeholder.com/150"
+        },
+        {
+          "id": "2",
+          "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
+          "title": "Məhsul 2",
+          "price": 125.99,
+          "image": "https://via.placeholder.com/150",
+          "description": "Yüksək keyfiyyətli materiallardan hazırlanmış rahat laptop çantası. Hər gün istifadə üçün idealdır."
         }
       ],
       "basket": [

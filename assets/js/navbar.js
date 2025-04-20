@@ -37,7 +37,7 @@ function renderNavbar(user) {
   const searchBtn = document.createElement("button");
   searchBtn.type = "submit";
   searchBtn.className = "search-btn";
-  searchBtn.innerHTML = "🔍";
+  searchBtn.innerHTML = "<img src='../assets/imgs/search 1.png'>";
 
   searchForm.appendChild(searchInput);
   searchForm.appendChild(searchBtn);
@@ -75,7 +75,7 @@ function renderNavbar(user) {
 
     const avatar = document.createElement("img");
     avatar.className = "avatar";
-    avatar.src = user.avatar || "https://via.placeholder.com/30";
+    avatar.src = "../assets/imgs/Group.png";
     avatar.alt = "Profil";
 
     const username = document.createElement("span");
