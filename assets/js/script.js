@@ -13,7 +13,7 @@ async function fetchProducts() {
     products.forEach((product) => {
       const isInWishlist =
         currentUser?.wishlist?.some((item) => item.id === product.id) || false;
-      const isInBasket =
+      const isInBasket =  
         currentUser?.basket?.some((item) => item.id === product.id) || false;
 
       console.log(product);

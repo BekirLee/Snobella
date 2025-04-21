@@ -64,26 +64,11 @@
           "image": "https://via.placeholder.com/150"
         },
         {
-          "id": "5",
-          "photo": "/kisspng-lancel-handbag-leather-clothing-accessories-women-bag-5abc8960466306 1 (1).png",
-          "title": "Məhsul 1",
-          "price": 25.99,
-          "image": "https://via.placeholder.com/150"
-        },
-        {
           "id": "4",
           "photo": "/kisspng-handbag-baggage-hand-luggage-leather-women-bag-5acd4069b62017 1.png",
           "title": "Məhsul 1",
           "price": 25.99,
           "image": "https://via.placeholder.com/150"
-        },
-        {
-          "id": "2",
-          "photo": "/kisspng-bag-laptop-backpack-knomo-beauchamp-5b0bf6a37cde46 7.png ",
-          "title": "Məhsul 2",
-          "price": 125.99,
-          "image": "https://via.placeholder.com/150",
-          "description": "Yüksək keyfiyyətli materiallardan hazırlanmış rahat laptop çantası. Hər gün istifadə üçün idealdır."
         },
         {
           "id": "3",
