@@ -13,7 +13,7 @@ async function fetchProducts() {
     products.forEach((product) => {
       const isInWishlist =
         currentUser?.wishlist?.some((item) => item.id === product.id) || false;
-      const isInBasket =  
+      const isInBasket =
         currentUser?.basket?.some((item) => item.id === product.id) || false;
 
       console.log(product);
@@ -31,13 +31,18 @@ async function fetchProducts() {
       const productPrice = document.createElement("p");
       productPrice.textContent = `${product.price} AZN`;
 
-      // Description kısmı eklendi
       const productDescription = document.createElement("p");
       productDescription.textContent = product.description.slice(0, 60) + "..."; // Description
 
       const discountBadge = document.createElement("div");
       discountBadge.className = "discount";
       discountBadge.textContent = "30 %";
+
+      productElement.addEventListener("click", (e) => {
+        if (!e.target.closest(".wishlist-icon, .basket-icon")) {
+          window.location.href = `../assets/pages/details.html?id=${product.id}`;
+        }
+      });
 
       const wishlistIcon = document.createElement("div");
       wishlistIcon.className = "wishlist-icon";
@@ -62,7 +67,7 @@ async function fetchProducts() {
       rating.innerHTML = "★★★★★";
 
       const priceWrapper = document.createElement("div");
-      priceWrapper.innerHTML = `<span class="price">$${product.price}</span> <span class="old-price">$${product.oldPrice}</span>`;
+      priceWrapper.innerHTML = `<span class="price">$${product.price}</span> `;
 
       productElement.appendChild(discountBadge);
       productElement.appendChild(wishlistIcon);

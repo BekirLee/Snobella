@@ -10,7 +10,6 @@ function renderNavbar(user) {
   const container = document.createElement("div");
   container.className = "navbar-container";
 
-  // Marka
   const brand = document.createElement("div");
   brand.className = "navbar-brand";
   const brandLink = document.createElement("a");
@@ -18,7 +17,6 @@ function renderNavbar(user) {
   brandLink.textContent = "Snobella";
   brand.appendChild(brandLink);
 
-  // Arama Formu
   const searchForm = document.createElement("form");
   searchForm.className = "search-form";
   searchForm.addEventListener("submit", (e) => {
@@ -42,7 +40,6 @@ function renderNavbar(user) {
   searchForm.appendChild(searchInput);
   searchForm.appendChild(searchBtn);
 
-  // Sağ bölmə
   const authSection = document.createElement("div");
   authSection.className = "auth-section";
 
@@ -91,21 +88,21 @@ function renderNavbar(user) {
     const dropdownContent = document.createElement("div");
     dropdownContent.className = "dropdown-content";
 
-    const profileLink = document.createElement("a");
-    profileLink.href = "/profile.html";
-    profileLink.textContent = "Profil";
+    // const profileLink = document.createElement("a");
+    // profileLink.href = "/profile.html";
+    // profileLink.textContent = "Profil";
 
-    const ordersLink = document.createElement("a");
-    ordersLink.href = "/orders.html";
-    ordersLink.textContent = "Sifarişlər";
+    // const ordersLink = document.createElement("a");
+    // ordersLink.href = "/orders.html";
+    // ordersLink.textContent = "Sifarişlər";
 
     const logoutBtn = document.createElement("button");
     logoutBtn.id = "logout-btn";
     logoutBtn.textContent = "Çıxış";
     logoutBtn.addEventListener("click", logout);
 
-    dropdownContent.appendChild(profileLink);
-    dropdownContent.appendChild(ordersLink);
+    // dropdownContent.appendChild(profileLink);
+    // dropdownContent.appendChild(ordersLink);
     dropdownContent.appendChild(logoutBtn);
 
     dropdown.appendChild(userMenu);
